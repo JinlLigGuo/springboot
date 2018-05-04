@@ -9,7 +9,14 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
+/**
+ * 
+* @ClassName: TimeInterceptor 
+* @Description: 拦截器 
+* @author jinliguo 
+* @date 2018年5月4日 下午5:47:51 
+*
+ */
 @Component
 public class TimeInterceptor implements HandlerInterceptor{
 	

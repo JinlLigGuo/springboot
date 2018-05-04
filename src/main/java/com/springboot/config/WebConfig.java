@@ -79,9 +79,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		* @return 
 		* @throws
 	 */
-	 @Override
+	/* @Override
 	 public void addInterceptors(InterceptorRegistry registry) {
 		 registry.addInterceptor(timeInterceptor);
-     }
+     }*/
 	
 }

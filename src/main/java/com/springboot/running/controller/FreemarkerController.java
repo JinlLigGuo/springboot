@@ -17,4 +17,11 @@ public class FreemarkerController {
 	        return "hello";
 	    }
 
+
+	    @RequestMapping("/websocket")
+	    public String websocket(Map<String,Object> map) {
+	        
+	        return "websocket";
+	    }
+	    
 }

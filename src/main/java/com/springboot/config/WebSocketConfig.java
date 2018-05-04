@@ -2,7 +2,14 @@ package com.springboot.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+
+import com.springboot.running.controller.WebSocketServer;
+
+
 
 /**
  *
@@ -12,12 +19,16 @@ import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 * @date 2018年5月3日 上午11:21:45 
 *
  */
-@Configuration
-public class WebSocketConfig {
-
-	 	@Bean
-	    public ServerEndpointExporter serverEndpointExporter() {
-	        return new ServerEndpointExporter();
-	    }
-	
+@Configuration  
+@EnableWebSocket  
+public class WebSocketConfig implements WebSocketConfigurer {  
+    @Override  
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {  
+        registry.addHandler(webSocketServer(), "/webSocketServer/*"); 
+    }  
+  
+    @Bean
+    public WebSocketHandler webSocketServer() {  
+        return new WebSocketServer();  
+    }  
 }
