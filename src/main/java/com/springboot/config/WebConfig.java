@@ -1,13 +1,16 @@
 package com.springboot.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.springboot.running.handler.TimeInterceptor;
 
 /**
  * 
@@ -18,7 +21,11 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 *
  */
 @Configuration
-public class WebConfig {
+public class WebConfig extends WebMvcConfigurerAdapter{
+	
+	   
+    @Autowired
+    private TimeInterceptor timeInterceptor;
 
 	/**
 	 * 
@@ -63,5 +70,17 @@ public class WebConfig {
 	    
 	    return registrationBean;
 	}*/
+	
+	/**
+	 	* @Title: addInterceptors 
+		* @Description: 拦截器
+		* @param @return    registry
+		* @return 
+		* @throws
+	 */
+	 @Override
+	 public void addInterceptors(InterceptorRegistry registry) {
+		 registry.addInterceptor(timeInterceptor);
+     }
 	
 }
