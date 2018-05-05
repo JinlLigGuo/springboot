@@ -1,17 +1,15 @@
 package com.springboot.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.springboot.running.handler.TimeInterceptor;
 
 /**
  * 
@@ -25,16 +23,11 @@ import com.springboot.running.handler.TimeInterceptor;
 public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	   
-    @Autowired
-    private TimeInterceptor timeInterceptor;
+   /* @Autowired
+    private TimeInterceptor timeInterceptor;*/
 
 	/**
-	 * 
-	* @Title: fastJsonHttpMessageConverters 
-	* @Description:  整合 Fastjson框架
-	* @param @return    
-	* @return HttpMessageConverters    返回类型 
-	* @throws
+	 * 整合 Fastjson框架
 	 */
 	@Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
@@ -50,13 +43,16 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     }
 	
 	
+	/***
+	 *	 配置静态资源处理
+	 */
+	 @Override
+	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	        registry.addResourceHandler("/**").addResourceLocations("classpath:/templates/static/");
+	 }
+	
 	/**
-	 * 
-	* @Title: timeFilter 
-	* @Description: 过滤器
-	* @param @return    
-	* @return FilterRegistrationBean    返回类型 
-	* @throws
+	 *  过滤器
 	 */
 	/*@Bean
 	public FilterRegistrationBean timeFilter() {
@@ -73,11 +69,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	}*/
 	
 	/**
-	 	* @Title: addInterceptors 
-		* @Description: 拦截器
-		* @param @return    registry
-		* @return 
-		* @throws
+	 *  拦截器
 	 */
 	/* @Override
 	 public void addInterceptors(InterceptorRegistry registry) {
