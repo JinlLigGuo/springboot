@@ -1,4 +1,4 @@
-package com.springboot.running.controller;
+package com.springboot.running.websocket;
 
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 public class WebSocketServer extends TextWebSocketHandler {
 	
     private static final Map<WebSocketSession, String> connections = new ConcurrentHashMap<>();
+    
     private static String getDatetime(Date date) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return format.format(date);
