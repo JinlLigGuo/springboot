@@ -34,6 +34,7 @@ import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 
 
@@ -62,10 +63,14 @@ import org.slf4j.LoggerFactory;
 * @date 2018年5月16日 下午9:19:38 
 *  
 */
+@Component
 @ClientEndpoint
-public class MyClient {
-    private static Logger logger = LoggerFactory.getLogger(MyClient.class);
+public class ClientMethod {
+	
+    private static Logger logger = LoggerFactory.getLogger(ClientMethod.class);
+    
     private Session session;
+    
     @OnOpen
     public void open(Session session){
         logger.info("Client WebSocket is opening...");
