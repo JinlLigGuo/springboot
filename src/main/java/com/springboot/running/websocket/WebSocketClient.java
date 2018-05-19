@@ -35,13 +35,8 @@ public class WebSocketClient {
 			WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 			client = new ClientMethod();
 			container.connectToServer(client, new URI("ws://localhost:8082/webSocketServer/222"));
+			new CountDownLatch(1).await();
 			// container.setDefaultMaxSessionIdleTimeout(5000L);
-			int turn = 0;
-			while (turn++ < 10) {
-				client.send("client send: " + turn);
-				// Thread.sleep(1000);
-				new CountDownLatch(1).await();
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,7 +46,7 @@ public class WebSocketClient {
 	@RequestMapping("/send")
 	public void send() {
 		try {
-				client.send("client send: " + "说话");
+			client.send("client send: " + "说话");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
