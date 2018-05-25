@@ -54,8 +54,8 @@ import com.springboot.running.mina.filter.keepalive.KeepAliveMessageFactoryImpl;
  * @date 2018年5月17日 下午5:34:08
  * 
  */
-@Configuration
-@ConfigurationProperties(prefix = "mina")
+//@Configuration
+//@ConfigurationProperties(prefix = "mina")
 public class MinaConfig {
 	
 	private static Logger log = LoggerFactory.getLogger(MinaConfig.class);

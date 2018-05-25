@@ -1,15 +1,18 @@
 package com.springboot.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.springboot.running.handler.TimeInterceptor;
 
 /**
  * 
@@ -23,8 +26,8 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 public class WebConfig extends WebMvcConfigurerAdapter{
 	
 	   
-   /* @Autowired
-    private TimeInterceptor timeInterceptor;*/
+    @Autowired
+    private TimeInterceptor timeInterceptor;
 
 	/**
 	 * 整合 Fastjson框架
@@ -71,9 +74,42 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	/**
 	 *  拦截器
 	 */
-	/* @Override
+	 @Override
 	 public void addInterceptors(InterceptorRegistry registry) {
 		 registry.addInterceptor(timeInterceptor);
-     }*/
+     }
 	
+	 
+/*	 
+	 @Autowired
+		private SimpleServerUserProcessor simpleServerUserProcessor;
+		@Autowired
+		private CONNECTEventProcessor cONNECTEventProcessor ;
+		@Autowired
+		private DISCONNECTEventProcessor dISCONNECTEventProcessor;
+		
+		
+		*//**
+		 *  sever
+		 *//*
+		@Bean(name="BoltServer")
+		public BoltServer boltServer() {  
+			
+			// 1. create a Rpc server with port assigned
+			BoltServer server = new BoltServer(8999);
+			// 2. add processor for connect and close event if you need
+			server.addConnectionEventProcessor(ConnectionEventType.CONNECT,    serverConnectProcessor);
+			server.addConnectionEventProcessor(ConnectionEventType.CLOSE,   serverDisConnectProcessor);
+			// 3. register user processor for client request
+			server.registerUserProcessor(serverUserProcessor);
+			server.addConnectionEventProcessor(ConnectionEventType.CONNECT,    cONNECTEventProcessor);
+			server.addConnectionEventProcessor(ConnectionEventType.CLOSE,   dISCONNECTEventProcessor);
+			// 3. register user processor for client request
+			server.registerUserProcessor(simpleServerUserProcessor);
+			// 4. server start
+			server.start();
+			
+	        return server;  
+	    }  
+	 */
 }

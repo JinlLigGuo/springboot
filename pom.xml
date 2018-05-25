@@ -29,20 +29,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
 
-		<!-- 热部署 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-			<scope>true</scope>
-		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+        </dependency>
 
 		<!-- log4j日志 -->
 		<dependency>
@@ -131,19 +123,40 @@
             <version>2.2.4</version>
         </dependency>
 
+        <dependency>
+        	<groupId>com.alipay.sofa</groupId>
+        	<artifactId>bolt</artifactId>
+        	<version>1.4.1</version>
+        </dependency>
+        
+     	<dependency>
+			<groupId>com.alipay.sofa</groupId>
+			<artifactId>hessian</artifactId>
+			<version>3.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- 热部署 方式一
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>true</scope>
+		</dependency> -->
+		
 	</dependencies>
 
 	<build>
 		<plugins>
+		<!-- 热部署 方式二
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<!-- 没有该配置，devtools 热部署 不生效 -->
-					<fork>true</fork>
+					<fork>true</fork> 
 				</configuration>
 			</plugin>
-
+		-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
